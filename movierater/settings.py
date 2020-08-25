@@ -26,7 +26,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['moviey-rater.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['localhost', 'moviey-rater.herokuapp.com']
 
 
 # Application definition
@@ -57,6 +58,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:19006',
+    'https://movie-base-cf458.web.app',
+    'https://movie-base-cf458.firebaseapp.com'
 )
 
 REST_FRAMEWORK = {
