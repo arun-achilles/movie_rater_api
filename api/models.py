@@ -16,11 +16,24 @@ class Movie(models.Model):
 		total = sum(list(map(lambda x: x.stars, ratings))) 
 		return total/len(ratings) if len(ratings) > 0 else 0
 
+	def reviews(self):
+		reviews = Review.objects.filter(movie=self)
+		return reviews
+
 
 class Rating(models.Model):
 	movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+
+	class Meta:
+		unique_together = (('user', 'movie'),)
+		index_together = (('user', 'movie'),)
+
+class Review(models.Model):
+	movie = models.ForeignKey(Movie, related_name='reviews', on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	comment = models.TextField(max_length=360)
 
 	class Meta:
 		unique_together = (('user', 'movie'),)

@@ -58,9 +58,6 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
-    'http://localhost:19006',
-    'https://movie-base-cf458.web.app',
-    'https://movie-base-cf458.firebaseapp.com',
     'https://movieraterreact.herokuapp.com'
 )
 
