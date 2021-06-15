@@ -7,7 +7,6 @@ from .models import Movie, Rating, Review
 from .serializers import MovieSerializer, RatingSerializer, UserSerializer, ReviewSerializer, MovieDetailSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from IPython import embed
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
