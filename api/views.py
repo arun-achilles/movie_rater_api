@@ -7,12 +7,20 @@ from .models import Movie, Rating, Review
 from .serializers import MovieSerializer, RatingSerializer, UserSerializer, ReviewSerializer, MovieDetailSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.authtoken.models import Token
+
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
 	permission_classes = (AllowAny, )
+
+	def create(self, request, *args, **kwargs):
+		response = super().create(request, *args, **kwargs)
+		token, created = Token.objects.get_or_create(user_id=response.data["id"])
+		response.data["token"] = str(token)
+		return response
 
 
 class MovieViewSet(viewsets.ModelViewSet):
