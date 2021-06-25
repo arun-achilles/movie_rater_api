@@ -1,4 +1,4 @@
-#!/home/arunkumarb/practice/MovieRaterAPI/venv/bin/python3
+#!/Users/arunkumarb/practice/movieRatingApp/movie_rater_api/venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":
