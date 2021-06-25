@@ -9,6 +9,15 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 
+from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
+
+class FacebookLogin(SocialLoginView):
+    adapter_class = FacebookOAuth2Adapter
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -42,6 +51,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 
 	@action(detail=True, methods=['POST'])
 	def rate_movie(self, request, pk=None, *args, **kwargs):
+		
 		if 'stars' in request.data:
 			movie = Movie.objects.get(id=pk)
 			stars = request.data['stars']

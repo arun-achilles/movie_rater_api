@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['localhost', 'moviey-rater.herokuapp.com']
 
 
+SITE_ID = 2
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +45,14 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'api',
+#for social login
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',    
 ]
 
 MIDDLEWARE = [
